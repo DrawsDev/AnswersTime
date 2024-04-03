@@ -113,7 +113,7 @@ class Quiz:
         random.shuffle(self._merge_result)
 
     def _check_answer(self) -> None:
-        if time() - self._question_start_time > self.question.duration + 1: #TODO: Исправить "костыль"
+        if time() - self._question_start_time > self.question.duration + 1:
             return
 
         correct = 0
@@ -167,7 +167,7 @@ def create_quizzes():
             right = question["answers"]["right"]
             wrong = question["answers"]["wrong"]
 
-            if len(right + wrong) > 4:
+            if len(right + wrong) > 4 or len(right + wrong) <= 0:
                 continue
 
             duration = question["duration"]

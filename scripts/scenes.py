@@ -54,7 +54,7 @@ class Intro(Scene):
 
         self._starfield = Starfield(self.game)
         self._logo = ImageSprite(self.game, pygame.transform.scale_by(self.game.image.get("logo").copy(), 1.5), screen_rect.center, "center")
-        self._label = TextSprite(self.game, "НАЖМИТЕ ЛЮБУЮ КНОПКУ ЧТОБЫ НАЧАТЬ", screen_rect.center + vec2(0, 250), "center", self.game.font.get("b16cW"))
+        self._label = TextSprite(self.game, "Press any button to start", screen_rect.center + vec2(0, 250), "center", self.game.font.get("b16cW"))
         
         self._logo.image.set_alpha(0)
         self._label.image.set_alpha(0)
@@ -132,7 +132,7 @@ class Menu(Scene):
             #self.objects.add(TextSprite(self.game, quiz.title, (30, 30 + 30 * i), fontparams=self.game.font.get("b28center")))
 
         screen_rect = self.game.screen.get_rect()
-        self.objects.add(TextSprite(self.game, "Выберите тест", screen_rect.midtop + vec2(0, 20), "midtop", self.game.font.get("b28center")))
+        self.objects.add(TextSprite(self.game, "Select a quiz", screen_rect.midtop + vec2(0, 20), "midtop", self.game.font.get("b28center")))
 
         self._create_menu_elements()
 
@@ -247,16 +247,16 @@ class Quiz(Scene):
         A = self._quiz.answers
         screen_rect = self.game.screen.get_rect()
         points = self._get_points()
-        nextbuttontext = "Продолжить" if Qi + 1 != self._quiz.questions_count else "Завершить"
+        nextbuttontext = "Next" if Qi + 1 != self._quiz.questions_count else "Complete"
 
         self._timelabel.draw_text(str(self._quiz.question.duration - 1))
 
-        self._answer_sprites.add(TextSprite(self.game, f"ВОПРОС {Qi + 1}", (screen_rect.centerx, 50), "center", self.game.font.get("b28center")))
+        self._answer_sprites.add(TextSprite(self.game, f"QUESTION {Qi + 1}", (screen_rect.centerx, 50), "center", self.game.font.get("b28center")))
         self._answer_sprites.add(TextSprite(self.game, Q.title, (screen_rect.centerx, 100), "center", self.game.font.get("b28center")))
         self._answer_sprites.add(QuizButtonBubble(self.game, nextbuttontext, (screen_rect.centerx, screen_rect.bottom - 80), self.game.font.get("bubble_1")))
         
         if Q.inputtable:
-            self._answer_sprites.add(QuizInputBubble(self.game, "Введите ответ", screen_rect.center, self.game.font.get("bubble_2")))
+            self._answer_sprites.add(QuizInputBubble(self.game, "Enter your answer", screen_rect.center, self.game.font.get("bubble_2")))
         else:
             [self._answer_sprites.add(QuizTextBubble(self.game, i, a, points[i], self.game.font.get("bubble_1"))) for i, a in enumerate(A)]
         
@@ -267,8 +267,8 @@ class Quiz(Scene):
         Qc = self._quiz.questions_count
         screen_rect = self.game.screen.get_rect()
 
-        self._endgame_objects.add(QuizButtonBubble(self.game, "В меню", (screen_rect.centerx, screen_rect.bottom - 80), self.game.font.get("bubble_1")))
-        self._endgame_objects.add(TextSprite(self.game, f"Правильных ответов: {Ac} из {Qc}", self.game.screen.get_rect().center, "center", self.game.font.get("b28center")))
+        self._endgame_objects.add(QuizButtonBubble(self.game, "Menu", (screen_rect.centerx, screen_rect.bottom - 80), self.game.font.get("bubble_1")))
+        self._endgame_objects.add(TextSprite(self.game, f"Correct answers: {Ac} of {Qc}", self.game.screen.get_rect().center, "center", self.game.font.get("b28center")))
 
         self.objects.add(self._endgame_objects)
 

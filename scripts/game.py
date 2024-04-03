@@ -12,7 +12,7 @@ class Game:
     def __init__(self) -> None:
         pygame.init()
         pygame.display.set_caption(settings.GAME_TITLE)
-        self.screen = pygame.display.set_mode(settings.SCREEN_SIZE, pygame.DOUBLEBUF | pygame.FULLSCREEN)
+        self.screen = pygame.display.set_mode(settings.SCREEN_SIZE, pygame.DOUBLEBUF)
         self.clock = pygame.time.Clock()
         self.audio = Audio()
         self.image = Image()

@@ -299,7 +299,7 @@ class Particle(pygame.sprite.Sprite):
         self._move(delta)
         self._check_lifetime()
 
-### Спасибо @Standalone Coder
+### thx @StandaloneCoder
 class Star:
     def __init__(self, game) -> None:
         self._screen = game.screen
@@ -511,10 +511,10 @@ class QuizMenuBubble(ImageSprite):
         
         title_image = font.get_render(quiz.title)
         title_rect = title_image.get_rect()
-        questions_count_image = font.get_render(f"Вопросов: {quiz.questions_count}") 
-        time_image = font.get_render(f"Общее время: {quiz.get_qs_total_time(True)}")
+        questions_count_image = font.get_render(f"Questions: {quiz.questions_count}") 
+        time_image = font.get_render(f"Total time: {quiz.get_qs_total_time(True)}")
 
-        self._label = font.get_render("Нажмите чтобы начать")
+        self._label = font.get_render("Click to start")
 
         self.image.blit(title_image, (10, 10))
         self.image.blit(questions_count_image, (10, title_rect.h + 25))
@@ -524,37 +524,3 @@ class QuizMenuBubble(ImageSprite):
     def post_draw(self, surface: pygame.Surface) -> None:
         if self.mouse_in():
             surface.blit(self._label, self._label.get_rect(center=self.rect.midbottom - vec2(0, 30)))
-
-class oldQuizInputBubble(pygame.sprite.Sprite):
-    def __init__(self,
-                 game,
-                 position: vec2 = vec2(0, 0),
-                 fontparams: FontParams = Font.none) -> None:
-        
-        super().__init__()
-        self._game = game
-        self._position = position
-        self._input_box = InputBox(game, "Введите ответ")
-        self._text_sprite = TextSprite(game, self._input_box.label, position, "center", fontparams)
-        self._cursor_rect = pygame.Rect(self._text_sprite.rect.topleft, (1, self._text_sprite.rect.height))
-        self._create_surface()
-        self._input_box.enabled = True
-    
-    def _create_surface(self) -> None:
-        self.image = self._game.image.get("quiz_bubble_hover")
-        self.rect = self.image.get_rect(center = self._position)
-    
-    def _draw_cursor(self, surface: pygame.Surface) -> None:
-        if time() % 1 > 0.5 and self._input_box.enabled:
-            posx = self._text_sprite.rect.right - self._text_sprite._fontparams.get_font_size(self._input_box._text[self._input_box._cursor + 1:])[0]
-            self._cursor_rect.midleft = (posx, self._text_sprite.rect.centery)
-            pygame.draw.rect(surface, (0, 0, 0), self._cursor_rect)
-
-    def post_draw(self, surface: pygame.Surface) -> None:
-        surface.blit(self._text_sprite.image, self._text_sprite.rect)
-        self._draw_cursor(surface)
-
-    def update(self, delta: float) -> None:
-        self._input_box.update()
-        if self._input_box.changed:
-            self._text_sprite.draw_text(f"{self._input_box._text if len(self._input_box._text) > 0 else self._input_box.label}")
