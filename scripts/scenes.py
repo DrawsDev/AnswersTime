@@ -56,6 +56,9 @@ class Intro(Scene):
         self._logo = ImageSprite(self.game, pygame.transform.scale_by(self.game.image.get("logo").copy(), 1.5), screen_rect.center, "center")
         self._label = TextSprite(self.game, "Press any button to start", screen_rect.center + vec2(0, 250), "center", self.game.font.get("b16cW"))
         
+        self._version_label = TextSprite(self.game, VER, screen_rect.bottomright - vec2(10, 10), "bottomright", self.game.font.get("b16cW"))
+        self._version_label.image.set_alpha(150)
+
         self._logo.image.set_alpha(0)
         self._label.image.set_alpha(0)
         self._label_offset = vec2(0, 250)
@@ -68,7 +71,7 @@ class Intro(Scene):
     def _create_logo(self) -> None:
         if self._timer0.expired and not self._show_ui:
             self._show_ui = True
-            self.objects.add(self._logo, self._label)
+            self.objects.add(self._logo, self._label, self._version_label)
             self.game.audio.play("space", -1)
         
         if self._show_ui and self._alpha_ui < 255:

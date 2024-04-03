@@ -1,5 +1,6 @@
 GAME_TITLE = "Answers Time"
 FPS = 30
+VER = "v1.0.0"
 SCREEN_SIZE = (1280, 720)
 BACK_COLOR = (62, 66, 75)
 
