@@ -12,7 +12,9 @@ def get_files_from(path: str) -> list:
         return files
     return []
 
-def read_json(file_path: str):
+def read_json(file_path: str) -> dict:
+    if not file_path.endswith(".json"):
+        return {}
     with open(file_path, "r", encoding="utf-8") as file:
         return json.load(file)
 

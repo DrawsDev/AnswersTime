@@ -157,24 +157,40 @@ class Quiz:
         self._shuffle_answers()
 
 def create_quizzes():
-    files = get_files_from(asset_path("data"))
     quizzes = []
-    for file in files:
-        data = read_json(asset_path(f"data\\{file}"))
-        questions = []
-        for question in data["questions"]:
-            title = question["title"]
-            right = question["answers"]["right"]
-            wrong = question["answers"]["wrong"]
+    for file in get_files_from(asset_path("data")):
+        quiz_questions = []
+
+        file_source = read_json(asset_path(f"data\\{file}"))
+        if file_source == {}:
+            continue
+
+        title = file_source.get("title")
+        questions = file_source.get("questions")
+        if questions == None or not isinstance(questions, list)\
+        or title == None or not isinstance(title, str):
+            continue
+
+        for question in questions:
+            text = question.get("title")
+            answers = question.get("answers")
+            right = answers.get("right")
+            wrong = answers.get("wrong")
+            duration = question.get("duration")
+            explain = question.get("explain")
+            inputtable = question.get("inputtable")
+
+            if not isinstance(text, str) or not isinstance(answers, dict)\
+            or not isinstance(right, list) or not isinstance(wrong, list)\
+            or not isinstance(duration, int) or not isinstance(explain, str)\
+            or not isinstance(inputtable, bool):
+                continue
 
             if len(right + wrong) > 4 or len(right + wrong) <= 0:
                 continue
 
-            duration = question["duration"]
-            explain = question["explain"]
-            inputtable = question.get("inputtable", False)
-            questions.append(Question(title, [right, wrong], duration, explain, inputtable))
-        quizzes.append(Quiz(data["title"], questions))
+            quiz_questions.append(Question(text, [right, wrong], duration, explain, inputtable))
+        quizzes.append(Quiz(title, quiz_questions))
     return quizzes
 
 def draw_quiz_bubbles(game):
