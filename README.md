@@ -11,7 +11,7 @@
 ##
 
 <p align="center">
-  <img src="https://github.com/DrawsDev/answers-time/assets/98094911/28dd622e-334e-4932-95f9-e0d35f5ed25a" height="100">
+  <img src="https://github.com/DrawsDev/answers-time/assets/98094911/51e3070c-79fc-407b-9acb-fdb33ffcd033" height="100">
 </p>
 
 ## How to convert test to exe
