@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/DrawsDev/answers-time/assets/98094911/f4a264d6-c6b1-460b-b97b-877a435ea26c">
+  <img src="https://github.com/DrawsDev/answers-time-legacy/assets/98094911/f4a264d6-c6b1-460b-b97b-877a435ea26c">
 </p>
 <p align="center">By @DrawsDev</p>
 
@@ -11,7 +11,7 @@
 ##
 
 <p align="center">
-  <img src="https://github.com/DrawsDev/answers-time/assets/98094911/51e3070c-79fc-407b-9acb-fdb33ffcd033" height="100">
+  <img src="https://github.com/DrawsDev/answers-time-legacy/assets/98094911/51e3070c-79fc-407b-9acb-fdb33ffcd033" height="100">
 </p>
 
 ## How to convert test to exe
